@@ -422,7 +422,6 @@ class game:
             lst.append((v, (tmp, move), ia, ib, ic))
         lst = sorted(lst)
         max_v, mv, mia, mib, mic = lst[len(lst) - 1]
-        print "ia = ", mia, " ib = ", mib, " ic = ", mic, " move = ", mv[1]
         return mv[0], max_v, mia, mib, mic
 
     def learn(self, state, v, ia, ib, ic):
@@ -435,15 +434,10 @@ class game:
                 v2 = v2 + 100
             elif ws < bs:
                 v2 = v2 - 100
-        #else:
-            #v2 = v2 + ws - bs
 
-        print "lia = ", ia, " lib = ", ib, " lic = ", ic
-        print "v = ", v, " v2 = ", v2
         self.a = self.a + self.learnng_rate * (v2 - v) * ia
         self.b = self.b + self.learnng_rate * (v2 - v) * ib
         self.c = self.c + self.learnng_rate * (v2 - v) * ic
-        print "a = ", self.a, " b = ", self.b, " c = ", self.c
 
 g = game()
 f = False
@@ -499,8 +493,6 @@ while 1:
                                     fill='yellow')
 
     if moved:
-        print g.a, " ", g.b, " ", g.c
-        print "-----------------> ", next_x, " ", next_y
         moved = False
         moves = g.current_state.get_black_moves()
         if (next_x, next_y) in moves:
@@ -521,7 +513,6 @@ while 1:
                 if len(g.current_state.get_black_moves()) == 0:
                     w = g.current_state.get_white_score()
                     b = g.current_state.get_black_score()
-                    print "w = ", w, " b = ", b
                     if b > w:
                         bb = bb + 1
                     elif b < w:
@@ -540,7 +531,6 @@ while 1:
                         if len(g.current_state.get_black_moves()) == 0:
                             w = g.current_state.get_white_score()
                             b = g.current_state.get_black_score()
-                            print "w = ", w, " b = ", b
                             if b > w:
                                 bb = bb + 1
                             elif b < w:
